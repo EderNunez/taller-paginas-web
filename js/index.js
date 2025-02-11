@@ -1,11 +1,7 @@
-const sheetID = '1pnbcy5oBQNNAyWMrmgmkiisC02olukoot_FlXTJgXcQ';
-const sheetName = encodeURIComponent("Class Data");
-const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
-fetch(sheetURL)
+fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRjtGEeJcNRGooq5bwqKnXKlRtJtXxQjDC2iyTMC9onSAjhC53z2C9MNiLF1GekE-0oOY1icBC7QvyP/pub?output=csv')
     .then(response => response.text())
-    .then(csvText => handleResponse(csvText));
-
-const handleResponse = csvText => {
-    console.log(csvText)
-    
-}
+    .then(data => {
+        const rows = data.split("\n").map(row => row.split(","));
+        console.log(rows); // Muestra los datos en la consola
+    })
+    .catch(error => console.error("Error al obtener los datos:", error));
